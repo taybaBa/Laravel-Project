@@ -11,7 +11,7 @@ class PostController extends Controller
 
     public function index(){
 
-       $posts = Post::all();
+        $posts = Post::paginate(4);
         return view('home',compact('posts'));
     }
     public function create(){
@@ -76,10 +76,10 @@ public function editPosts(Request $request, $id){
         $post->image = $filename;
     }
     $post->save();
-    return redirect('/');
+    return redirect('/home');
 }
 public function delete($id){
         Post::destroy($id);
-    return redirect('/');
+    return redirect('/home');
 }
 }

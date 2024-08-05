@@ -3,24 +3,25 @@
   <form action="{{route('edit.post',$post->id)}}" method="post" enctype="multipart/form-data">
             @csrf
         <div class="mt-2">
-            <label class="">Enter title</label>
-            <input type="text" name="title" value="{{$post->title}}">
+            <label class="form-label">Enter title</label>
+            <input type="text" class="form-control"  name="title" value="{{$post->title}}">
         </div>
         <div class="mt-2">
-            <label class="">Enter content</label>
-            <input type="text" name="content" value="{{$post->content}}">
+            <label class="form-label">Enter content</label>
+            <input type="text" class="form-control" name="content" value="{{$post->content}}">
         </div>
        <div class="mt-2">
-            <label class="">image</label>
-                <img src="{{ asset('storage/uploads/' . $post->image) }}" alt="">
+            <label class="form-label">image</label>
+                <img src="{{ asset('storage/uploads/' . $post->image) }}" width="150" height="150" alt="" class="img-fluid rounded"  >
         </div>
             <div class="mt-2">
-                <label class="">Upload image</label>
-                <input type="file" name="image" id="imageInput" >
+                <label class="form-label">Upload New image</label>
+                <input type="file" name="image" class="form-control"   id="imageInput" >
                 <br>
                 <img src="" alt="" id="imagePreview" style="display: none;max-width:300px;max-height: 300px">
             </div>
-        <button type="submit">Edit Details</button>
+        <button class="btn btn-info" type="submit">Update Details</button>
+        <a class="btn btn-danger" href="{{route('post.delete',$post->id)}}">Delete</a>
 
     </form>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pica/8.0.0/pica.min.js"></script>
@@ -33,7 +34,7 @@
             reader.onload = function(e) {
             const imagePreview = document.getElementById('imagePreview');
             imagePreview.src = e.target.result;
-            imagePreview.style.display = 'block'; // Show the image preview
+            imagePreview.style.display = 'block';
         }
             reader.readAsDataURL(file); // Convert file to data URL
         } else {
