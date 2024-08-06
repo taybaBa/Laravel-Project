@@ -18,6 +18,13 @@
                 <li class="nav-item">
                     <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                 </li>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Profile </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a class="text-decoration-none text-center" href="{{route('profile.edit')}}">Profile</a> </li>
+                        <li class="dropdown-item"><a class="text-decoration-none text-center" href="{{route('logout')}}">Logout</a> </li>
+                    </ul>
+                </div>
             </ul>
         </div>
     </div>
