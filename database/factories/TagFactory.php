@@ -2,15 +2,16 @@
 
 namespace Database\Factories;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
  */
-class PostFactory extends Factory
+class TagFactory extends Factory
 {
-    protected $model = Post::class;
+    protected $model = Tag::class;
 
     /**
      * Define the model's default state.
@@ -20,10 +21,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' =>fake()->title(),
-            'user_id' =>User::factory(),
-            'content' => fake()->text(200),
-            'image' => $this->faker->imageUrl(640, 480, 'cats', true, 'Faker'),
+            'name' => $this->faker->unique()->word(), // Use unique words
         ];
     }
 }

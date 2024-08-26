@@ -20,6 +20,17 @@
                 <br>
                 <img src="" alt="" id="imagePreview" style="display: none;max-width:300px;max-height: 300px">
             </div>
+      <div class="mt-2">
+          <label class="form-label">Tags</label>
+          <select name="tags[]" class="form-control" multiple>
+              @foreach($tags as $tag)
+                  <option value="{{ $tag->id }}" {{ in_array($tag->id, $selectedTags) ? 'selected' : '' }}>
+                      {{ $tag->name }}
+                  </option>
+
+              @endforeach
+          </select>
+      </div>
         <button class="btn btn-info" type="submit">Update Details</button>
         <a class="btn btn-danger" href="{{route('post.delete',$post->id)}}">Delete</a>
 

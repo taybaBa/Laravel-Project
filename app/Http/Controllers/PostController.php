@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
@@ -17,12 +18,15 @@ class PostController extends Controller
         return view('home',compact('posts'));
     }
     public function create(){
-        return view('create-post');
+        $tags = Tag::all();
+        return view('create-post',compact('tags'));
     }
     public function edit($id){
 
         $post = Post::findorFail($id);
-        return view('edit',compact('post'));
+        $tags = Tag::all();
+        $selectedTags = $post->tags->pluck('id')->toArray();
+        return view('edit',compact('post','selectedTags','tags'));
     }
     public function createPosts(Request $request)
     {
@@ -33,6 +37,8 @@ class PostController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'tags' => 'nullable|array',
+            'tags.*' => 'exists:tags,id'
 
         ]);
 
@@ -57,8 +63,12 @@ class PostController extends Controller
 
             $post->image = $filename;
         }
-
         $post->save();
+// Attach selected tags to the post
+        if ($request->has('tags')) {
+            $post->tags()->attach($request->tags);
+        }
+
 
         return redirect()->back()->with('success', 'Post created successfully');
     }
