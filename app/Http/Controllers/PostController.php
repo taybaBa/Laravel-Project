@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
 use Image;
 class PostController extends Controller
 {
 
-    public function index(){
-
-        $posts = Post::paginate(4);
+    public function index()
+    {
+        $user = Auth::user();
+        $posts = $user->posts()->paginate(4);
         return view('home',compact('posts'));
     }
     public function create(){
@@ -24,15 +26,20 @@ class PostController extends Controller
     }
     public function createPosts(Request $request)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'You need to be logged in to create a post.');
+        }
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
         ]);
 
         $post = new Post([
             'title' => $request->title,
             'content' => $request->content,
+            'user_id' =>  auth()->id(),
         ]);
 
         if ($request->hasFile('image')) {
