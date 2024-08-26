@@ -328,6 +328,34 @@
 
     {{ $posts->links('pagination::bootstrap-4') }}
 
+    {{--   <div class="row">--}}
+    {{--       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">--}}
+    {{--           <div class="carousel-inner">--}}
+    {{--               <div class="carousel-item active">--}}
+    {{--                   @foreach($posts as $post)--}}
+    {{--                       <div class="cards-wrapper">--}}
+    {{--                           <div class="card" style="width: 18rem;">--}}
+    {{--                               <img src="{{'./images/banner.jpg'}}" class="card-img-top" alt="...">--}}
+    {{--                               <div class="card-body">--}}
+    {{--                                   <h5 class="card-title">{{$post->title}}</h5>--}}
+    {{--                                   <p class="card-text">{{$post->description}}</p>--}}
+    {{--                                   <a href="#" class="btn btn-primary">Go somewhere</a>--}}
+    {{--                               </div>--}}
+    {{--                           </div>--}}
+    {{--                       </div>--}}
+    {{--                   @endforeach--}}
+    {{--               </div>--}}
+
+    {{--           </div>--}}
+    {{--           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">--}}
+    {{--               <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+    {{--               <span class="sr-only">Previous</span>--}}
+    {{--           </a>--}}
+    {{--           <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">--}}
+    {{--               <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
+    {{--               <span class="sr-only">Next</span>--}}
+    {{--           </a>--}}
+    {{--       </div>--}}
 </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
